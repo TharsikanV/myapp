@@ -10,23 +10,19 @@ export const RegisterApi = (inputs)=>{
     let data={name:inputs.name,emailId:inputs.email,password:inputs.password,phoneNumber:inputs.phoneNumber}
     return axios.post(`http://localhost:8080/signup`,data)
 }
-export const VerifyApi = (input)=>{
-    let data={otp:input.otp}
+export const VerifyApi = (inputs)=>{
+    let data=inputs.otp;
     let token=getUserData();
-    console.log(token)
-    return axios.post(`http://localhost:8080/verify`,data
-    ,{headers: {
-        'Content-Type':'application/json',
-        'authorization':token
-      }
-    }
-    )
-    // return axios.post(`http://localhost:8080/verify?otp=${input.otp}`
-    // ,{headers: {
-    //     'Content-Type': 'application/json','authorization':'Bearer ${token}'
-    //   }
-    // }
-    // )
+    return axios.post(
+        `http://localhost:8080/verify?otp=${data}`,
+        {}, // empty object as the second argument if no data is being sent in the request body
+        {
+            headers: {
+                'authorization': token
+            }
+        }
+    );
+
 }
 export const LoginApi = (inputs)=>{
     let data={emailId:inputs.email,password:inputs.password}

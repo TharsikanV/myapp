@@ -59,7 +59,8 @@ export default function VerifyPage(){
         })
         .catch((err) => {
           console.log(err.message)//////////////////////////////////////////////////////////////////////////////////
-            setErrors({...errors1, custom_error: "Verification failed"});
+          console.log("hi")  
+          setErrors({...errors1, custom_error: "Verification failed"});
         }).finally(()=>{
                setLoading(false);
           })
